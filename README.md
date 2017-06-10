@@ -1,2 +1,2 @@
 # Capstone-Project
-Final project from Springboard
+Final project for Springboard Data Science Course
