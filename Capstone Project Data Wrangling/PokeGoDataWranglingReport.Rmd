@@ -1,5 +1,5 @@
 ---
-title: "*Pok&eacute;monGo* Data Wrangling"
+title: "Pok&eacute;monGo Data Wrangling"
 author: "Hunter Campbell"
 date: "June 15, 2017"
 output: html_document
