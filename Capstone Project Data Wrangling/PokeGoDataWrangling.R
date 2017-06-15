@@ -4,14 +4,13 @@ library("dplyr")
 library("ggplot2")
 
 #load in the csv file
+#I couldn't upload the csv file to github due to size, so view this code as an example
 PokeGo_original <- read.csv(file = "C://Users//hcnur_000//Desktop//Capstone Project//Capstone Project Data Wrangling//PokeGo_original.csv", as.is = T)
 View(PokeGo_original)  #this may take a while because of the size of the dataset
 
 #picked the columns that I thought were most useful
-PokeGo_clean <- select(PokeGo_original, pokemonId, appearedTimeOfDay,
-                       appearedDayOfWeek, terrainType:closeToWater,
-                       weather, population_density,
-                       gymDistanceKm, pokestopDistanceKm)
+PokeGo_clean <- select(PokeGo_original, pokemonId, appearedTimeOfDay, appearedDayOfWeek, terrainType:closeToWater,
+                       weather, population_density, gymDistanceKm, pokestopDistanceKm)
 View(PokeGo_clean)
 
 #arranged in order by pokemon
@@ -43,18 +42,14 @@ colnames(PokeGo_clean)[9] <- "pokestopDistance_m"
 write.csv(PokeGo_clean, "C://Users//hcnur_000//Desktop//PokeGo_clean.csv")
 
 #Lets make a water dataset to test water pokemon near water
-PokeGo_water2water <- filter(PokeGo_clean, pokemonId ==
-                               c(7:9, 54:55, 60:62, 72:73, 79:80,
-                                 86:87, 90:91, 98:99, 116:121,
-                                 129:131, 134, 138:141)) %>%
+PokeGo_water2water <- filter(PokeGo_clean, pokemonId == c(7:9, 54:55, 60:62, 72:73, 79:80, 86:87, 90:91, 98:99,
+                                                          116:121, 129:131, 134, 138:141)) %>%
     select(pokemonId, closeToWater)
 View(PokeGo_water2water)
 #Lets make another water dataset to test non-water pokemon near water
 #This way we can compare the two datasets
-PokeGo_notwater2water <- filter(PokeGo_clean, pokemonId ==
-                                  c(1:6, 10:53, 56:59, 63:71, 74:78,
-                                    81:85, 88:89, 92:97, 100:115,
-                                    122:128, 132:133, 135:137, 142:151)) %>%
+PokeGo_notwater2water <- filter(PokeGo_clean, pokemonId == c(1:6, 10:53, 56:59, 63:71, 74:78, 81:85, 88:89,
+                                                             92:97, 100:115, 122:128, 132:133, 135:137, 142:151)) %>%
     select(pokemonId, closeToWater)
 View(PokeGo_notwater2water)
 
