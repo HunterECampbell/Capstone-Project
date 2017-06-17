@@ -1,8 +1,8 @@
 ---
-Title: "Pok&eacute;monGo Data Wrangling"
-Author: "Hunter Campbell"
-Date: "June 15, 2017"
-Output: html_document
+title: "Pok&eacute;monGo Data Wrangling"
+author: "Hunter Campbell"
+date: "June 15, 2017"
+output: html_document
 ---
 
 <br>
