@@ -1,8 +1,8 @@
 ---
-Title: "Capstone Project Proposal"
-Author: "Hunter Campbell"
-Date: "June 9, 2017"
-Output: html_document
+title: "Capstone Project Proposal"
+author: "Hunter Campbell"
+date: "June 9, 2017"
+output: html_document
 ---
 <br>
 
