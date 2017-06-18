@@ -9,7 +9,7 @@ The findings from the PokeémonGo statistical calculations are quite interesting
 
 <br>
 
-##### **PokémonGo Rarity Chart**
+### **PokémonGo Rarity Chart**
 
 To start us off we need to know the difference between which Pokémon are common, and which are more rare. The rarity in PokémonGo is different than the older *Gameboy* to *DS* games. In PokémonGo, the rarity is based on how often a Pokémon spawns. As the graph shows, there is a peek of Pokémon Id's from 10-25. There are also a few shorter peeks around 40-50, 95-100, and 130-135.
 
@@ -19,7 +19,7 @@ If you need a reference on what each Pokémon Id is, go here: [Pokémon Id's](ht
 
 <br>
 
-##### **PokémonGo Users' Preferred Circumstances**
+### **PokémonGo Users' Preferred Circumstances**
 
 These four graphs show different PokémonGo Users' Preferences of Circumstances. The first graph shows what day of the week PokémonGo Users prefer to play. The most popular days are Wednesday through Saturday, with the peek being Friday and Saturday. The second graph shows what time PokémonGo users prefer to play. Night time is, interestingly, the most popular time to play, while the other times of day are around the same height. The third graph shows the preferred weather that PokémonGo users play during. As expected, they play most often during nice weather. The fourth graph shows the type of terrain most PokémonGo users play in. This most likely is just the terrain type of where they live, but that also means that there is a common ground of what terrain PokémonGo users play in.
 
@@ -29,7 +29,7 @@ Here's a reference for what each number equals for each terrain: [Terrain Types]
 
 <br>
 
-##### **Pokémon Spawn Frequency Correlations**
+### **Pokémon Spawn Frequency Correlations**
 
 These first three graphs show the correlation of Pokémon near water. The first graph is the control for the other two graphs, because it contains every Pokémon. The next graph shows the correlation between water type Pokémon near water, and the graph after that shows the correlation between non-water type Pokémon near water. There is a definite higher probability of finding a water type Pokémon near water vs. a non-water type Pokémon near water. In fact, there is about a 16% higher probability of seeing a water type Pokémon near water!
 

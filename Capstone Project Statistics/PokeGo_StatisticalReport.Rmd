@@ -18,7 +18,7 @@ The findings from the Poke&eacute;monGo statistical calculations are quite inter
 
 <br>
 
-#####**Pok&eacute;monGo Rarity Chart**
+###**Pok&eacute;monGo Rarity Chart**
 To start us off we need to know the difference between which Pok&eacute;mon are common, and which are more rare. The rarity in Pok&eacute;monGo is different than the older *Gameboy* to *DS* games. In Pok&eacute;monGo, the rarity is based on how often a Pok&eacute;mon spawns. As the graph shows, there is a peek of Pok&eacute;mon Id's from 10-25.  There are also a few shorter peeks around 40-50, 95-100, and 130-135.
 
 If you need a reference on what each Pok&eacute;mon Id is, go here: [Pok&eacute;mon Id's](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number)
@@ -31,7 +31,7 @@ ggplot(PokeGo_clean, aes(pokemonId)) +
 
 <br>
 
-#####**Pok&eacute;monGo Users' Preferred Circumstances**
+###**Pok&eacute;monGo Users' Preferred Circumstances**
 These four graphs show different Pok&eacute;monGo Users' Preferences of Circumstances. The first graph shows what day of the week Pok&eacute;monGo Users prefer to play. The most popular days are Wednesday through Saturday, with the peek being Friday and Saturday. The second graph shows what time Pok&eacute;monGo users prefer to play. Night time is, interestingly, the most popular time to play, while the other times of day are around the same height. The third graph shows the preferred weather that Pok&eacute;monGo users play during. As expected, they play most often during nice weather. The fourth graph shows the type of terrain most Pok&eacute;monGo users play in. This most likely is just the terrain type of where they live, but that also means that there is a common ground of what terrain Pok&eacute;monGo users play in.
 
 Here's a reference for what each number equals for each terrain: [Terrain Types](http://glcf.umd.edu/data/lc/)
@@ -59,7 +59,7 @@ ggplot(PokeGo_clean, aes(terrainType)) +
 
 <br>
 
-#####**Pok&eacute;mon Spawn Frequency Correlations**
+###**Pok&eacute;mon Spawn Frequency Correlations**
 These first three graphs show the correlation of Pok&eacute;mon near water. The first graph is the control for the other two graphs, because it contains every Pok&eacute;mon. The next graph shows the correlation between water type Pok&eacute;mon near water, and the graph after that shows the correlation between non-water type Pok&eacute;mon near water. There is a definite higher probability of finding a water type Pok&eacute;mon near water vs. a non-water type Pok&eacute;mon near water.  In fact, there is about a 16% higher probability of seeing a water type Pok&eacute;mon near water!
 
 ```{r echo = FALSE, fig.height = 3, fig.width = 3}
