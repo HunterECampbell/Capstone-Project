@@ -1,0 +1,303 @@
+---
+title: "Pok&eacute;monGo Statistical Report"
+author: "Hunter Campbell"
+date: "June 16, 2017"
+output: rmarkdown::github_document
+---
+
+```{r echo = FALSE, message = FALSE}
+library(ggplot2)
+library(dplyr)
+PokeGo_clean <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_clean.csv")
+PokeGo_water2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_water2water.csv")
+PokeGo_notwater2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_notwater2water.csv")
+PokeGo_clean <- select(PokeGo_clean, -X)
+PokeGo_water2water <- select(PokeGo_water2water, -X)
+PokeGo_notwater2water <- select(PokeGo_notwater2water, -X)
+```
+
+<br>
+
+#####**Introduction**
+*Pok&eacute;monGo* is an augmented reality game for handheld devices created by *Niantic, Inc.* Over 100 million downloads, and one of the most popular apps ever created. This report shows the correlation between Pok&eacute;mon spawn frequency and different environments that a *Pok&eacute;monGo* user might encounter. This report also presents data and graphical analysis that will affirm a rise in rare Pok&eacute;mon spawn rates and a drop in common Pok&eacute;mon spawn rates--- all based on location. This report will ultimately help all *Pok&eacute;monGo* users with their quest to "Catch'em All". Lets get started!
+
+<br>
+
+#####**The Data Wrangling**
+The original data is too big to upload to github, so here is a link to download the data: [Original Pok&eacute;monGo Data](https://www.kaggle.com/semioniy/predictemall)
+
+There were several columns from the original data that didn't make sense to include in this report. This shows the columns that were picked and how they were written in *RStudio*:
+
+```{r eval = FALSE}
+PokeGo_clean <- select(PokeGo_original, pokemonId, appearedTimeOfDay,
+                       appearedDayOfWeek, terrainType:closeToWater,
+                       weather, population_density,
+                       gymDistanceKm, pokestopDistanceKm)
+```
+
+The new data (clean) was then ordered according to our independent variable (Pokemon Id):
+
+```{r eval = FALSE}
+library("dplyr")
+PokeGo_clean <- PokeGo_clean %>% arrange(pokemonId)
+```
+
+Afterwards, any blank and/or NA values were checked for (both returned as zero):
+
+```{r eval = FALSE}
+sum(is.na(PokeGo_clean))
+sum(PokeGo_clean == "")
+```
+
+In the Day of Week column, Monday wasn't found, but there was a variable listed as "dummy_variable". The dummy variable was then changed to Monday:
+
+```{r eval = FALSE}
+PokeGo_clean$appearedDayOfWeek <- gsub("dummy_day", "Monday", PokeGo_clean$appearedDayOfWeek, ignore.case = T)
+```
+
+The gym and pok&eacute;stop distance columns were originally labelled as kilometers, which was hard to read, because of the decimal placement. They were both changed to read as meters:
+
+```{r eval = FALSE}
+PokeGo_clean$gymDistanceKm <- PokeGo_clean$gymDistanceKm * 1000
+PokeGo_clean$pokestopDistanceKm <- as.numeric(PokeGo_clean$pokestopDistanceKm) * 1000
+#NA's were created in the pokestop distance column, here's the fix (replaced with the mean of the column):
+PokeGo_clean$pokestopDistanceKm[is.na(PokeGo_clean$pokestopDistanceKm)] <- mean(PokeGo_clean$pokestopDistanceKm, na.rm = T)
+
+#Changing the titles of the two columns:
+colnames(PokeGo_clean)[8] <- "gymDistance_m"
+colnames(PokeGo_clean)[9] <- "pokestopDistance_m"
+```
+
+After creating the clean data, two new datasets were created to later test the correlation of Pok&eacute;mon to Close to Water. This is how they were made:
+
+```{r eval = FALSE}
+#The water type Pokemon dataset:
+PokeGo_water2water <- filter(PokeGo_clean, pokemonId ==
+                               c(7:9, 54:55, 60:62, 72:73, 79:80,
+                                 86:87, 90:91, 98:99, 116:121,
+                                 129:131, 134, 138:141)) %>%
+    select(pokemonId, closeToWater)
+
+#The non-water type Pokemon dataset:
+PokeGo_notwater2water <- filter(PokeGo_clean, pokemonId ==
+                                  c(1:6, 10:53, 56:59, 63:71, 74:78,
+                                    81:85, 88:89, 92:97, 100:115,
+                                    122:128, 132:133, 135:137, 142:151)) %>%
+    select(pokemonId, closeToWater)
+```
+
+<br>
+
+#####**The Data**
+These are the top few rows of the data that will be used (which was made in the Data Wrangling section):
+
+**The Clean Data**
+  
+```{r echo = FALSE}
+head(PokeGo_clean)
+```
+
+<br>
+
+**Water Type Pok&eacute;mon Data**
+
+```{r echo = FALSE}
+head(PokeGo_water2water)
+```
+
+<br>
+
+**Non-water Type Pok&eacute;mon Data**
+
+```{r echo = FALSE}
+head(PokeGo_notwater2water)
+```
+
+<br>
+
+#####***Pok&eacute;monGo* Rarity Chart**
+To start us off, we need to know the difference between the Pok&eacute;mon that are common, and the Pok&eacute;mon that are more rare. The rarity in *Pok&eacute;monGo* is different than the older *Gameboy* to *DS* games. In *Pok&eacute;monGo*, the rarity is based on how often a Pok&eacute;mon spawns. As the graph below shows, there is a peak of Pok&eacute;mon Id's from 10-25 (the common Pok&eacute;mon).  There are also a few shorter peaks around 40-50, 95-100, and 130-135 (the less common Pok&eacute;mon). The rest of the graph shows the rare Pok&eacute;mon.
+
+Here's a reference on what each Pok&eacute;mon Id is: [Pok&eacute;mon Id's](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number)
+
+```{r echo = FALSE, fig.height = 3, fig.width = 6, fig.align = "center"}
+ggplot(PokeGo_clean, aes(pokemonId)) +
+  geom_bar(fill = "red") +
+  labs(x = "Pokemon Id", y = "Pokemon Appearances")
+```
+
+<br>
+
+#####**Pok&eacute;mon's Preferred Circumstances**
+These four graphs show different Pok&eacute;mon's preferred circumstances to spawn during. 
+
+The first graph shows what days of the week Pok&eacute;mon usually spawn. The most popular days are Wednesday through Saturday, with the peak being Friday and Saturday.
+
+The second graph shows what time Pok&eacute;mon most often spawn during. Night time is, interestingly, the most popular time to spawn, while the other times of day are around the same height.
+
+The third graph shows the preferred weather that Pok&eacute;mon spawn during.
+
+The fourth graph shows the type of terrain most Pok&eacute;mon spawn in. This most likely is just the terrain type of where users live, but that would also mean that there is a common ground for what terrain Pok&eacute;mon spawn.
+
+We can assume from the graphs that there is a correlation between when and where Pok&eacute;mon spawn and a *Pok&eacute;monGo* user's activity with the app. This would mean that *Pok&eacute;monGo* users usually play on the weekend, during good weather, in a common location, and/or during the night.
+
+Here's a reference for what each number equals for each terrain: [Terrain Types](http://glcf.umd.edu/data/lc/)
+
+```{r echo = FALSE, fig.height = 3, fig.width = 4.5}
+ggplot(PokeGo_clean, aes(appearedDayOfWeek)) +
+  geom_bar(fill = "steelblue") +
+  scale_x_discrete(limits = c("Monday", "Tuesday", "Wednesday", "Thursday",
+                              "Friday", "Saturday", "Sunday")) +
+  labs(x = "Day of Week", y = "Pokemon Appearances")
+
+ggplot(PokeGo_clean, aes(appearedTimeOfDay)) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Time of Day", y = "Pokemon Appearances")
+
+ggplot(PokeGo_clean, aes(weather)) +
+  geom_bar(fill = "steelblue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .25)) +
+  labs(x = "Weather", y = "Pokemon Appearances")
+
+ggplot(PokeGo_clean, aes(terrainType)) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Terrain Type", y = "Pokemon Appearances")
+```
+
+<br>
+
+#####**Pok&eacute;mon Spawn Frequency Correlations**
+**Pok&eacute;mon to Close to Water**
+
+The first graph is the control for the other two graphs, because it contains every Pok&eacute;mon.
+
+The second graph shows the correlation between water type Pok&eacute;mon near water, and the graph after that shows the correlation between non-water type Pok&eacute;mon near water. Be mindful of the numbers on the y-axis, because this makes a difference in how our graphs are analyzed.
+
+```{r echo = FALSE, fig.height = 3, fig.width = 3}
+ggplot(PokeGo_clean, aes(closeToWater, fill = closeToWater)) +
+  geom_bar() +
+  labs(x = "Close To Water", y = "Appearances of All Pokemon Types", fill = "Close To Water")
+
+ggplot(PokeGo_water2water, aes(closeToWater, fill = closeToWater)) +
+  geom_bar() +
+  labs(x = "Close to Water", y = "Appearances of Water Type Pokemon",
+       fill = "Close To Water")
+
+ggplot(PokeGo_notwater2water, aes(closeToWater, fill = closeToWater)) +
+  geom_bar() +
+  labs(x = "Close to Water", y = "Appearances of Non-water Type Pokemon",
+       fill = "Close To Water")
+```
+
+There is a definite higher probability of finding a water type Pok&eacute;mon near water vs. a non-water type Pok&eacute;mon near water. Lets calculate this:
+
+```{r}
+summary(PokeGo_water2water$closeToWater)
+
+#To find the percentage:
+437/(761+437)
+```
+
+This returns about a 36.5% chance of seeing a water type Pok&eacute;mon near water. Now lets calculate the chance of seeing a non-water type Pok&eacute;mon near water:
+
+```{r}
+summary(PokeGo_notwater2water$closeToWater)
+
+#To find the percentage:
+441/(1722+441)
+```
+
+This returns about a 20.4% chance of seeing a non-water type Pok&eacute;mon near water. That's a 16% difference! There is a 16% higher probability of finding a water type Pok&eacute;mon near water.
+
+<br>
+
+**Pok&eacute;mon to Population Density**
+
+The first is a density plot. It makes sense that our density is mostly around the mean of 1,313.6. This code line shows the mean of population density:
+
+```{r}
+summary(PokeGo_clean$population_density)
+```
+
+The first graph also shows similar peaks to the Pok&eacute;mon Id graph. (This will be compared towards the end of the Pok&eacute;mon Spawn Frequency Correlations section.)
+
+The second graph is a visualization of the rarity of Pok&eacute;mon in a densely populated area. It's interesting that the peaks and valleys are quite opposite to the Pok&eacute;mon Id graph, except at the end, where there is a constant decline. This shows that a *Pok&eacute;monGo* user has a higher chance of seeing rare Pok&eacute;mon while in densly populated areas.
+
+```{r echo = FALSE, message = FALSE, fig.height = 3, fig.width = 4.5}
+ggplot(PokeGo_clean, aes(pokemonId, population_density)) +
+  geom_point(shape = 1, alpha = .1) +
+  geom_density2d(color = "red", size = 1) +
+  labs(x = "Pokemon Id", y = "Population Density")
+
+ggplot(PokeGo_clean, aes(pokemonId, population_density)) +
+  geom_smooth() +
+  labs(x = "Pokemon Id", y = "Population Density")
+```
+
+<br>
+
+**Pok&eacute;mon to Gym Distance**
+
+The first graph demonstrates that there is a higher density of Pok&eacute;mon near gyms, because the closer the graph approaches zero on the y-axis, the closer a *Pok&eacute;monGo* user is to a gym.
+
+The second graph then shows that there is a rise in seeing rare Pok&eacute;mon near gyms and a decline of common Pok&eacute;mon near gyms. Being by a gym would lead to greater success finding rare Pok&eacute;mon. There is some error ribbons to be noted, with great error around the Pok&eacute;mon Id's of 130-150, but the line of best fit shows great results.
+
+```{r echo = FALSE, message = FALSE, fig.height = 3, fig.width = 4.5}
+ggplot(PokeGo_clean, aes(pokemonId, gymDistance_m)) +
+  geom_point(shape = 1, alpha = .1) +
+  coord_cartesian(ylim = c(0, 1e+05)) +
+  labs(x = "Pokemon Id", y = "Gym Distance in Meters")
+
+ggplot(PokeGo_clean, aes(pokemonId, gymDistance_m)) +
+  geom_smooth() +
+  labs(x = "Pokemon Id", y = "Gym Distance in Meters")
+```
+
+<br>
+
+**Pok&eacute;mon to Pok&eacute;stop Distance**
+
+Again, the first graph shows that there is a rise in Pok&eacute;mon spawn rates the closer a *Pok&eacute;monGo* user is to a pok&eacute;stop. Being near a pok&eacute;stop is more demanding than being near a gym, though, because the density plots don't reach quite as high as the gym density plot.
+
+Interestingly, the second graph shows a steady incline for rare Pok&eacute;mon with Id's between 125-150. This shows similar results to the second gym graph, which means that there is a higher chance of finding rare Pok&eacute;mon near pok&eacute;stops! Again, the error ribbons need to be noted, with greater error around the Pok&eacute;mon Id's of 130-150. Also, the numbers on the y-axis for this graph are much lower than the gym graph, which again clarifies that pok&eacute;stops are much more demanding on how close a *Pok&eacute;monGo* user needs to be to the pok&eacute;stop to see results.
+
+```{r echo = FALSE, message = FALSE, fig.height = 3, fig.width = 4.5}
+ggplot(PokeGo_clean, aes(pokemonId, pokestopDistance_m)) +
+  geom_point(shape = 1, alpha = .1) +
+  coord_cartesian(ylim = c(0, 1e+05)) +
+  labs(x = "Pokemon Id", y = "Pokestop Distance in Meters")
+
+ggplot(PokeGo_clean, aes(pokemonId, pokestopDistance_m)) +
+  geom_smooth() +
+  labs(x = "Pokemon Id", y = "Pokestop Distance in Meters")
+```
+
+<br>
+
+**Pok&eacute;mon Id to Pok&eacute;mon Rarity**
+Here's a comparison of the three line graphs, showing Pok&eacute;mon rarity, next to the Pok&eacute;mon Id graph:
+
+```{r echo = FALSE, message = FALSE, fig.height = 3, fig.width = 4.5}
+ggplot(PokeGo_clean, aes(pokemonId)) +
+  geom_bar(fill = "red") +
+  labs(x = "Pokemon Id", y = "Pokemon Appearances")
+
+ggplot(PokeGo_clean, aes(pokemonId, population_density)) +
+  geom_smooth() +
+  labs(x = "Pokemon Id", y = "Population Density")
+
+ggplot(PokeGo_clean, aes(pokemonId, gymDistance_m)) +
+  geom_smooth() +
+  labs(x = "Pokemon Id", y = "Gym Distance in Meters")
+
+ggplot(PokeGo_clean, aes(pokemonId, pokestopDistance_m)) +
+  geom_smooth() +
+  labs(x = "Pokemon Id", y = "Pokestop Distance in Meters")
+```
+
+<br>
+
+#####**In Conlusion**
+To wrap everything up, the graphs clearly show a relationship between Pok&eacute;mon in *Pok&eacute;monGo* and the environments in which they spawn most often. There is a higher chance of seeing a water type Pok&eacute;mon near water, and a higher chance of seeing rare Pok&eacute;mon in densly populated areas, near gyms, and near pok&eacute;stops. This can be useful to any *Pok&eacute;monGo* user, especially if they are on the hunt for rare Pok&eacute;mon.
+
+<br>
