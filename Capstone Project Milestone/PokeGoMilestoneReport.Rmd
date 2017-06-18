@@ -1,5 +1,5 @@
 ---
-title: "Pok&eacute;monGo Statistical Report"
+title: "Pok&eacute;monGo Milestone Report"
 author: "Hunter Campbell"
 date: "June 16, 2017"
 output: rmarkdown::github_document
@@ -19,7 +19,7 @@ PokeGo_notwater2water <- select(PokeGo_notwater2water, -X)
 <br>
 
 ###**Introduction**
-*Pok&eacute;monGo* is an augmented reality game for handheld devices created by *Niantic, Inc.* Over 100 million downloads, and one of the most popular apps ever created. This report shows the correlation between Pok&eacute;mon spawn frequency and different environments that a *Pok&eacute;monGo* user might encounter. This report also presents data and graphical analysis that will affirm a rise in rare Pok&eacute;mon spawn rates and a drop in common Pok&eacute;mon spawn rates--- all based on location. This report will ultimately help all *Pok&eacute;monGo* users with their quest to "Catch'em All". Lets get started!
+*Pok&eacute;monGo* is an augmented reality game for handheld devices created by *Niantic, Inc.* With over 100 million downloads, *Pok&eacute;monGo* is one of the most popular apps ever created. This report shows the correlation between Pok&eacute;mon spawn frequency and different environments that a *Pok&eacute;monGo* user might encounter. This report also presents data and graphical analysis that will affirm a rise in rare Pok&eacute;mon spawn rates and a drop in common Pok&eacute;mon spawn rates--- all based on location. This report ultimately can help all *Pok&eacute;monGo* users with their quest to "Catch'em All". Lets get started!
 
 <br>
 
@@ -139,7 +139,7 @@ The third graph shows the preferred weather that Pok&eacute;mon spawn during.
 
 The fourth graph shows the type of terrain most Pok&eacute;mon spawn in. This most likely is just the terrain type of where users live, but that would also mean that there is a common ground for what terrain Pok&eacute;mon spawn.
 
-We can assume from the graphs that there is a correlation between when and where Pok&eacute;mon spawn and a *Pok&eacute;monGo* user's activity with the app. This would mean that *Pok&eacute;monGo* users usually play on the weekend, during good weather, in a common location, and/or during the night.
+We can assume from the graphs that there is a correlation between when and where Pok&eacute;mon spawn and a *Pok&eacute;monGo* user's activity with the app. This would mean that *Pok&eacute;monGo* users usually play on the weekend, during good weather, in a common location, and/or during the night. These graphs do not present anything further than this concerning the why (e.g. Why during the night?) for each of these items.
 
 Here's a reference for what each number equals for each terrain: [Terrain Types](http://glcf.umd.edu/data/lc/)
 

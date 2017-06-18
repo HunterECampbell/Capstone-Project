@@ -1,4 +1,4 @@
-PokémonGo Statistical Report
+PokémonGo Milestone Report
 ================
 Hunter Campbell
 June 16, 2017
@@ -7,7 +7,7 @@ June 16, 2017
 
 ### **Introduction**
 
-*PokémonGo* is an augmented reality game for handheld devices created by *Niantic, Inc.* Over 100 million downloads, and one of the most popular apps ever created. This report shows the correlation between Pokémon spawn frequency and different environments that a *PokémonGo* user might encounter. This report also presents data and graphical analysis that will affirm a rise in rare Pokémon spawn rates and a drop in common Pokémon spawn rates--- all based on location. This report will ultimately help all *PokémonGo* users with their quest to "Catch'em All". Lets get started!
+*PokémonGo* is an augmented reality game for handheld devices created by *Niantic, Inc.* With over 100 million downloads, *PokémonGo* is one of the most popular apps ever created. This report shows the correlation between Pokémon spawn frequency and different environments that a *PokémonGo* user might encounter. This report also presents data and graphical analysis that will affirm a rise in rare Pokémon spawn rates and a drop in common Pokémon spawn rates--- all based on location. This report ultimately can help all *PokémonGo* users with their quest to "Catch'em All". Lets get started!
 
 <br>
 
@@ -146,7 +146,7 @@ The third graph shows the preferred weather that Pokémon spawn during.
 
 The fourth graph shows the type of terrain most Pokémon spawn in. This most likely is just the terrain type of where users live, but that would also mean that there is a common ground for what terrain Pokémon spawn.
 
-We can assume from the graphs that there is a correlation between when and where Pokémon spawn and a *PokémonGo* user's activity with the app. This would mean that *PokémonGo* users usually play on the weekend, during good weather, in a common location, and/or during the night.
+We can assume from the graphs that there is a correlation between when and where Pokémon spawn and a *PokémonGo* user's activity with the app. This would mean that *PokémonGo* users usually play on the weekend, during good weather, in a common location, and/or during the night. These graphs do not present anything further than this concerning the why (e.g. Why during the night?) for each of these items.
 
 Here's a reference for what each number equals for each terrain: [Terrain Types](http://glcf.umd.edu/data/lc/)
 
