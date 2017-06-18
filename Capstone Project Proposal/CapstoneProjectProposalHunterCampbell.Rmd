@@ -1,0 +1,30 @@
+---
+title: "Capstone Project Proposal"
+author: "Hunter Campbell"
+date: "June 9, 2017"
+output: rmarkdown::github_document
+---
+<br>
+
+#####**The Problem That Needs to be Solved**
+Is there a relationship between specific Pok&eacute;mon sightings on *Pok&eacute;mon GO* and the user's location? If so, can we predict what Pok&eacute;mon will be sighted most often depending on the location of the *Pok&eacute;mon GO* user?
+
+<br>
+
+#####**The Client**
+The client for this project is anyone who uses *Pok&eacute;mon GO*. How interesting would it be to know that, "If I am by water, I could find a Lapras"? Or, "I know I have a better chance of finding a Dragonite at this location verses another location".  Another practical use is farming Pok&eacute;mon.  If a client is looking for a ton of Abra to be able to train the most powerful Alakazam possible, where could Abra most commonly be found? Groups or individual clients would then have the ability and knowledge to go to the Pok&eacute;mon's location, rather than randomly guessing where each Pok&eacute;mon would be. There is a greater efficiency knowing the probability is higher in certain areas for certain types of Pok&eacute;mon.
+
+<br>
+
+#####**The Data to Use**
+I will be using the data set from: [Predict'em All](https://www.kaggle.com/semioniy/predictemall)
+
+<br>
+
+#####**My Approach to Solving the Problem**
+I will first try linear regression to see if there is a common relationship between location and type of Pok&eacute;mon.  If not, perhaps some bar graphs and/or histograms will shed some light on the data set.
+
+<br>
+
+#####**My Deliverables**
+Code and graphs will be included in the final production of my Capstone Project.  It will also come in the form of a slide deck.
