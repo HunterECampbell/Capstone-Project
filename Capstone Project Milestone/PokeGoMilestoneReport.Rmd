@@ -18,12 +18,12 @@ PokeGo_notwater2water <- select(PokeGo_notwater2water, -X)
 
 <br>
 
-#####**Introduction**
+###**Introduction**
 *Pok&eacute;monGo* is an augmented reality game for handheld devices created by *Niantic, Inc.* Over 100 million downloads, and one of the most popular apps ever created. This report shows the correlation between Pok&eacute;mon spawn frequency and different environments that a *Pok&eacute;monGo* user might encounter. This report also presents data and graphical analysis that will affirm a rise in rare Pok&eacute;mon spawn rates and a drop in common Pok&eacute;mon spawn rates--- all based on location. This report will ultimately help all *Pok&eacute;monGo* users with their quest to "Catch'em All". Lets get started!
 
 <br>
 
-#####**The Data Wrangling**
+###**The Data Wrangling**
 The original data is too big to upload to github, so here is a link to download the data: [Original Pok&eacute;monGo Data](https://www.kaggle.com/semioniy/predictemall)
 
 There were several columns from the original data that didn't make sense to include in this report. This shows the columns that were picked and how they were written in *RStudio*:
@@ -88,7 +88,7 @@ PokeGo_notwater2water <- filter(PokeGo_clean, pokemonId ==
 
 <br>
 
-#####**The Data**
+###**The Data**
 These are the top few rows of the data that will be used (which was made in the Data Wrangling section):
 
 **The Clean Data**
@@ -115,7 +115,7 @@ head(PokeGo_notwater2water)
 
 <br>
 
-#####***Pok&eacute;monGo* Rarity Chart**
+###***Pok&eacute;monGo* Rarity Chart**
 To start us off, we need to know the difference between the Pok&eacute;mon that are common, and the Pok&eacute;mon that are more rare. The rarity in *Pok&eacute;monGo* is different than the older *Gameboy* to *DS* games. In *Pok&eacute;monGo*, the rarity is based on how often a Pok&eacute;mon spawns. As the graph below shows, there is a peak of Pok&eacute;mon Id's from 10-25 (the common Pok&eacute;mon).  There are also a few shorter peaks around 40-50, 95-100, and 130-135 (the less common Pok&eacute;mon). The rest of the graph shows the rare Pok&eacute;mon.
 
 Here's a reference on what each Pok&eacute;mon Id is: [Pok&eacute;mon Id's](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number)
@@ -128,7 +128,7 @@ ggplot(PokeGo_clean, aes(pokemonId)) +
 
 <br>
 
-#####**Pok&eacute;mon's Preferred Circumstances**
+###**Pok&eacute;mon's Preferred Circumstances**
 These four graphs show different Pok&eacute;mon's preferred circumstances to spawn during. 
 
 The first graph shows what days of the week Pok&eacute;mon usually spawn. The most popular days are Wednesday through Saturday, with the peak being Friday and Saturday.
@@ -166,7 +166,7 @@ ggplot(PokeGo_clean, aes(terrainType)) +
 
 <br>
 
-#####**Pok&eacute;mon Spawn Frequency Correlations**
+###**Pok&eacute;mon Spawn Frequency Correlations**
 **Pok&eacute;mon to Close to Water**
 
 The first graph is the control for the other two graphs, because it contains every Pok&eacute;mon.
@@ -298,7 +298,7 @@ ggplot(PokeGo_clean, aes(pokemonId, pokestopDistance_m)) +
 
 <br>
 
-#####**In Conlusion**
+###**In Conlusion**
 To wrap everything up, the graphs clearly show a relationship between Pok&eacute;mon in *Pok&eacute;monGo* and the environments in which they spawn most often. There is a higher chance of seeing a water type Pok&eacute;mon near water, and a higher chance of seeing rare Pok&eacute;mon in densly populated areas, near gyms, and near pok&eacute;stops. This can be useful to any *Pok&eacute;monGo* user, especially if they are on the hunt for rare Pok&eacute;mon.
 
 <br>

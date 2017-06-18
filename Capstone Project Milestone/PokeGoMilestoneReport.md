@@ -5,13 +5,13 @@ June 16, 2017
 
 <br>
 
-##### **Introduction**
+### **Introduction**
 
 *PokémonGo* is an augmented reality game for handheld devices created by *Niantic, Inc.* Over 100 million downloads, and one of the most popular apps ever created. This report shows the correlation between Pokémon spawn frequency and different environments that a *PokémonGo* user might encounter. This report also presents data and graphical analysis that will affirm a rise in rare Pokémon spawn rates and a drop in common Pokémon spawn rates--- all based on location. This report will ultimately help all *PokémonGo* users with their quest to "Catch'em All". Lets get started!
 
 <br>
 
-##### **The Data Wrangling**
+### **The Data Wrangling**
 
 The original data is too big to upload to github, so here is a link to download the data: [Original PokémonGo Data](https://www.kaggle.com/semioniy/predictemall)
 
@@ -77,7 +77,7 @@ PokeGo_notwater2water <- filter(PokeGo_clean, pokemonId ==
 
 <br>
 
-##### **The Data**
+### **The Data**
 
 These are the top few rows of the data that will be used (which was made in the Data Wrangling section):
 
@@ -124,7 +124,7 @@ These are the top few rows of the data that will be used (which was made in the 
 
 <br>
 
-##### ***PokémonGo* Rarity Chart**
+### ***PokémonGo* Rarity Chart**
 
 To start us off, we need to know the difference between the Pokémon that are common, and the Pokémon that are more rare. The rarity in *PokémonGo* is different than the older *Gameboy* to *DS* games. In *PokémonGo*, the rarity is based on how often a Pokémon spawns. As the graph below shows, there is a peak of Pokémon Id's from 10-25 (the common Pokémon). There are also a few shorter peaks around 40-50, 95-100, and 130-135 (the less common Pokémon). The rest of the graph shows the rare Pokémon.
 
@@ -134,7 +134,7 @@ Here's a reference on what each Pokémon Id is: [Pokémon Id's](https://bulbaped
 
 <br>
 
-##### **Pokémon's Preferred Circumstances**
+### **Pokémon's Preferred Circumstances**
 
 These four graphs show different Pokémon's preferred circumstances to spawn during.
 
@@ -154,7 +154,7 @@ Here's a reference for what each number equals for each terrain: [Terrain Types]
 
 <br>
 
-##### **Pokémon Spawn Frequency Correlations**
+### **Pokémon Spawn Frequency Correlations**
 
 **Pokémon to Close to Water**
 
@@ -239,13 +239,15 @@ Interestingly, the second graph shows a steady incline for rare Pokémon with Id
 
 <br>
 
-**Pokémon Id to Pokémon Rarity** Here's a comparison of the three line graphs, showing Pokémon rarity, next to the Pokémon Id graph:
+**Pokémon Id to Pokémon Rarity**
+
+Here's a comparison of the three line graphs, showing Pokémon rarity, next to the Pokémon Id graph:
 
 ![](PokeGoMilestoneReport_files/figure-markdown_github/unnamed-chunk-20-1.png)![](PokeGoMilestoneReport_files/figure-markdown_github/unnamed-chunk-20-2.png)![](PokeGoMilestoneReport_files/figure-markdown_github/unnamed-chunk-20-3.png)![](PokeGoMilestoneReport_files/figure-markdown_github/unnamed-chunk-20-4.png)
 
 <br>
 
-##### **In Conlusion**
+### **In Conlusion**
 
 To wrap everything up, the graphs clearly show a relationship between Pokémon in *PokémonGo* and the environments in which they spawn most often. There is a higher chance of seeing a water type Pokémon near water, and a higher chance of seeing rare Pokémon in densly populated areas, near gyms, and near pokéstops. This can be useful to any *PokémonGo* user, especially if they are on the hunt for rare Pokémon.
 
