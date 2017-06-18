@@ -275,6 +275,7 @@ ggplot(PokeGo_clean, aes(pokemonId, pokestopDistance_m)) +
 <br>
 
 **Pok&eacute;mon Id to Pok&eacute;mon Rarity**
+
 Here's a comparison of the three line graphs, showing Pok&eacute;mon rarity, next to the Pok&eacute;mon Id graph:
 
 ```{r echo = FALSE, message = FALSE, fig.height = 3, fig.width = 4.5}
