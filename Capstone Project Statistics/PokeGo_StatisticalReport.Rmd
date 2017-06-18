@@ -2,14 +2,14 @@
 title: "Pok&eacute;monGo Statistical Report"
 author: "Hunter Campbell"
 date: "June 16, 2017"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 ```{r echo = FALSE}
 library(ggplot2)
-PokeGo_clean <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_clean.csv")
-PokeGo_water2water <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_water2water.csv")
-PokeGo_notwater2water <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_notwater2water.csv")
+PokeGo_clean <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_clean.csv")
+PokeGo_water2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_water2water.csv")
+PokeGo_notwater2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_notwater2water.csv")
 ```
 
 <br>
