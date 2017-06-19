@@ -4,6 +4,7 @@ library("dplyr")
 library("ggplot2")
 
 #load in the csv file
+##Couldn't upload the original csv file to github, due to size, so use this as an example:
 PokeGo_original <- read.csv(file = "C://Users//hcnur_000//Desktop//Capstone Project//Capstone Project Data Wrangling//PokeGo_original.csv", as.is = T)
 View(PokeGo_original)  #this may take a while because of the size of the dataset
 
