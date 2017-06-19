@@ -2,9 +2,9 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 
-PokeGo_clean <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_clean.csv")
-PokeGo_water2water <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_water2water.csv")
-PokeGo_notwater2water <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_notwater2water.csv")
+PokeGo_clean <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_clean.csv")
+PokeGo_water2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_water2water.csv")
+PokeGo_notwater2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_notwater2water.csv")
 View(PokeGo_clean)
 View(PokeGo_water2water)
 View(PokeGo_notwater2water)
@@ -22,23 +22,24 @@ summary(PokeGo_notwater2water)
 
 #Lets calculate the probability of water2water vs notwater2water
 #Water type Pokemon vs. close to water:
-437/(761+437)  #36.48%
+13901/(24507+13901)  #36.2%
 #Non-water type Pokemon vs. close to water:
-441/(1722+441)  #20.39%
-#That's not much of a difference, but you have a 16% higher chance
+54598/(203015+54598)  #21.2%
+#That's not much of a difference, but you have a 15% higher chance
 #of seeing a water type Pokemon near water vs. a non-water type Pokemon
 #near water.
 
 
 ##CORRELATIONS
+library(polycor)
 hetcor(PokeGo_clean)
 #Looks like the highest correlations are pokemonId w/ population_density
 #and pokemonId w/ closeToWater, pokemonId is next closest to terrainType
 #and weather.  That's quite interesting.
 hetcor(PokeGo_water2water)
-#This correlation is 0.0272
+#This correlation is -0.007067
 hetcor(PokeGo_notwater2water)
-#This correlation is 0.04632, which is better than water2water's
+#This correlation is 0.05643, which is better than water2water's
 
 ##GRAPHS
 #PokeGo_clean

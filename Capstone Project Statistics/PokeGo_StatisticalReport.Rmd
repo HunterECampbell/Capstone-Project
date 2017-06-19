@@ -7,9 +7,9 @@ output: rmarkdown::github_document
 
 ```{r echo = FALSE}
 library(ggplot2)
-PokeGo_clean <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_clean.csv")
-PokeGo_water2water <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_water2water.csv")
-PokeGo_notwater2water <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_notwater2water.csv")
+PokeGo_clean <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_clean.csv")
+PokeGo_water2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_water2water.csv")
+PokeGo_notwater2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_notwater2water.csv")
 ```
 
 <br>
@@ -60,7 +60,7 @@ ggplot(PokeGo_clean, aes(terrainType)) +
 <br>
 
 ###**Pok&eacute;mon Spawn Frequency Correlations**
-These first three graphs show the correlation of Pok&eacute;mon near water. The first graph is the control for the other two graphs, because it contains every Pok&eacute;mon. The next graph shows the correlation between water type Pok&eacute;mon near water, and the graph after that shows the correlation between non-water type Pok&eacute;mon near water. There is a definite higher probability of finding a water type Pok&eacute;mon near water vs. a non-water type Pok&eacute;mon near water.  In fact, there is about a 16% higher probability of seeing a water type Pok&eacute;mon near water!
+These first three graphs show the correlation of Pok&eacute;mon near water. The first graph is the control for the other two graphs, because it contains every Pok&eacute;mon. The next graph shows the correlation between water type Pok&eacute;mon near water, and the graph after that shows the correlation between non-water type Pok&eacute;mon near water. There is a definite higher probability of finding a water type Pok&eacute;mon near water vs. a non-water type Pok&eacute;mon near water.  In fact, there is about a 15% higher probability of seeing a water type Pok&eacute;mon near water!
 
 ```{r echo = FALSE, fig.height = 3, fig.width = 3}
 ggplot(PokeGo_clean, aes(closeToWater, fill = closeToWater)) +

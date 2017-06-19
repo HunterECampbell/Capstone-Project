@@ -31,7 +31,7 @@ Here's a reference for what each number equals for each terrain: [Terrain Types]
 
 ### **Pokémon Spawn Frequency Correlations**
 
-These first three graphs show the correlation of Pokémon near water. The first graph is the control for the other two graphs, because it contains every Pokémon. The next graph shows the correlation between water type Pokémon near water, and the graph after that shows the correlation between non-water type Pokémon near water. There is a definite higher probability of finding a water type Pokémon near water vs. a non-water type Pokémon near water. In fact, there is about a 16% higher probability of seeing a water type Pokémon near water!
+These first three graphs show the correlation of Pokémon near water. The first graph is the control for the other two graphs, because it contains every Pokémon. The next graph shows the correlation between water type Pokémon near water, and the graph after that shows the correlation between non-water type Pokémon near water. There is a definite higher probability of finding a water type Pokémon near water vs. a non-water type Pokémon near water. In fact, there is about a 15% higher probability of seeing a water type Pokémon near water!
 
 ![](PokeGo_StatisticalReport_files/figure-markdown_github/unnamed-chunk-4-1.png)![](PokeGo_StatisticalReport_files/figure-markdown_github/unnamed-chunk-4-2.png)![](PokeGo_StatisticalReport_files/figure-markdown_github/unnamed-chunk-4-3.png)
 
