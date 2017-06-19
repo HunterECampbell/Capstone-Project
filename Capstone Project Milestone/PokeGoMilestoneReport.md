@@ -103,9 +103,9 @@ These are the top few rows of the data that will be used (which was made in the 
 **Water Type Pokémon Data**
 
     ##   pokemonId closeToWater
-    ## 1         7         true
-    ## 2         7        false
-    ## 3         7        false
+    ## 1         7        false
+    ## 2         7         true
+    ## 3         7         true
     ## 4         7        false
     ## 5         7        false
     ## 6         7        false
@@ -117,10 +117,10 @@ These are the top few rows of the data that will be used (which was made in the 
     ##   pokemonId closeToWater
     ## 1         1        false
     ## 2         1        false
-    ## 3         1         true
+    ## 3         1        false
     ## 4         1        false
     ## 5         1        false
-    ## 6         1         true
+    ## 6         1        false
 
 <br>
 
@@ -171,32 +171,32 @@ summary(PokeGo_water2water$closeToWater)
 ```
 
     ## false  true 
-    ##   761   437
+    ## 24507 13901
 
 ``` r
 #To find the percentage:
-437/(761+437)
+13901/(24507+13901)
 ```
 
-    ## [1] 0.3647746
+    ## [1] 0.3619298
 
-This returns about a 36.5% chance of seeing a water type Pokémon near water. Now lets calculate the chance of seeing a non-water type Pokémon near water:
+This returns about a 36.2% chance of seeing a water type Pokémon near water. Now lets calculate the chance of seeing a non-water type Pokémon near water:
 
 ``` r
 summary(PokeGo_notwater2water$closeToWater)
 ```
 
-    ## false  true 
-    ##  1722   441
+    ##  false   true 
+    ## 203015  54598
 
 ``` r
 #To find the percentage:
-441/(1722+441)
+54598/(203015+54598)
 ```
 
-    ## [1] 0.2038835
+    ## [1] 0.2119381
 
-This returns about a 20.4% chance of seeing a non-water type Pokémon near water. That's a 16% difference! There is a 16% higher probability of finding a water type Pokémon near water.
+This returns about a 21.2% chance of seeing a non-water type Pokémon near water. That's a 15% difference! There is a 15% higher probability of finding a water type Pokémon near water.
 
 <br>
 

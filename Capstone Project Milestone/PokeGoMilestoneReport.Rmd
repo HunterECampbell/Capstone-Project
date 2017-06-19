@@ -8,9 +8,9 @@ output: rmarkdown::github_document
 ```{r echo = FALSE, message = FALSE}
 library(ggplot2)
 library(dplyr)
-PokeGo_clean <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_clean.csv")
-PokeGo_water2water <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_water2water.csv")
-PokeGo_notwater2water <- read.csv(file = "https://github.com/hcnureth/Capstone-Project/blob/master/Capstone%20Project%20Data%20Wrangling/PokeGo_notwater2water.csv")
+PokeGo_clean <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_clean.csv")
+PokeGo_water2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_water2water.csv")
+PokeGo_notwater2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_notwater2water.csv")
 PokeGo_clean <- select(PokeGo_clean, -X)
 PokeGo_water2water <- select(PokeGo_water2water, -X)
 PokeGo_notwater2water <- select(PokeGo_notwater2water, -X)
@@ -120,7 +120,7 @@ To start us off, we need to know the difference between the Pok&eacute;mon that 
 
 Here's a reference on what each Pok&eacute;mon Id is: [Pok&eacute;mon Id's](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number)
 
-```{r echo = FALSE, fig.height = 3, fig.width = 6, fig.align = "center"}
+```{r echo = FALSE, fig.height = 3, fig.align = "center"}
 ggplot(PokeGo_clean, aes(pokemonId)) +
   geom_bar(fill = "red") +
   labs(x = "Pokemon Id", y = "Pokemon Appearances")
@@ -195,19 +195,19 @@ There is a definite higher probability of finding a water type Pok&eacute;mon ne
 summary(PokeGo_water2water$closeToWater)
 
 #To find the percentage:
-437/(761+437)
+13901/(24507+13901)
 ```
 
-This returns about a 36.5% chance of seeing a water type Pok&eacute;mon near water. Now lets calculate the chance of seeing a non-water type Pok&eacute;mon near water:
+This returns about a 36.2% chance of seeing a water type Pok&eacute;mon near water. Now lets calculate the chance of seeing a non-water type Pok&eacute;mon near water:
 
 ```{r}
 summary(PokeGo_notwater2water$closeToWater)
 
 #To find the percentage:
-441/(1722+441)
+54598/(203015+54598)
 ```
 
-This returns about a 20.4% chance of seeing a non-water type Pok&eacute;mon near water. That's a 16% difference! There is a 16% higher probability of finding a water type Pok&eacute;mon near water.
+This returns about a 21.2% chance of seeing a non-water type Pok&eacute;mon near water. That's a 15% difference! There is a 15% higher probability of finding a water type Pok&eacute;mon near water.
 
 <br>
 
