@@ -15,7 +15,7 @@ If Pokémon rarity can be calculated, then a *PokémonGo* user would know what P
 
 ### **The Machine Learning Technique**
 
-A supervised approach was used to solve Pokémon rarity. To be specific, the K-means algorithm was used on the independent variable of Pokémon Id. This way, rarity could be clustered into a few different groups. Four groups were chosen: Common, Uncommon, Rare, and Very Rare. So, four clusters were made. First, the data had to be set-up to be able to make these clusters.
+A supervised approach was used to solve Pokémon rarity. To be specific, the K-means algorithm was used on the independent variable of Pokémon Id. This way, rarity could be clustered into a few different groups. Four groups were chosen: Very Common, Common, Rare, and Very Rare. So, four clusters were made. First, the data had to be set-up to be able to make these clusters.
 
 Here's the code for the set-up:
 
