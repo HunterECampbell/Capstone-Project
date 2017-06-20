@@ -109,7 +109,7 @@ waterRarity <- ggplot(waterId, aes(pokemonId, freq, col = factor(waterIdKMC$clus
   labs(x = "Water Type Pokemon Id's", y = "Frequency") +
   scale_color_manual(values = c("#800080", "#e68a00", "#ff0000", "#006622"),
                      name = "Rarity",
-                     breaks = c(4, 3, 2, 1),
+                     breaks = c(3, 2, 4, 1),
                      labels = c("Very Common", "Common", "Rare", "Very Rare")) +
   scale_alpha(guide = F) +
   theme(axis.text.x = element_blank())
@@ -130,7 +130,7 @@ notwaterRarity <- ggplot(notwaterId, aes(pokemonId, freq, col = factor(notwaterI
   labs(x = "Non-water Type Pokemon Id's", y = "Frequency") +
   scale_color_manual(values = c("#ff0000", "#800080", "#e68a00", "#006622"),
                      name = "Rarity",
-                     breaks = c(4, 3, 2, 1),
+                     breaks = c(1, 3, 4, 2),
                      labels = c("Very Common", "Common", "Rare", "Very Rare")) +
   scale_alpha(guide = F) +
   theme(axis.text.x = element_blank())
