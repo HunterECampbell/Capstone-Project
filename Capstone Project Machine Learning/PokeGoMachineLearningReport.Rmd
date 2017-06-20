@@ -1,0 +1,153 @@
+---
+title: "Pok&eacute;monGo Machine Learning Report"
+author: "Hunter Campbell"
+date: "June 20, 2017"
+output: rmarkdown::github_document
+---
+
+```{r echo = FALSE, message = FALSE}
+library(ggplot2)
+library(dplyr)
+library(plyr)
+library(plotly)
+library(tidyr)
+PokeGo_clean <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_clean.csv")
+PokeGo_water2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_water2water.csv")
+PokeGo_notwater2water <- read.csv(file = "C:/Users/hcnur_000/Desktop/Capstone Project/Capstone Project Data Wrangling/PokeGo_notwater2water.csv")
+PokeGo_clean <- select(PokeGo_clean, -X)
+PokeGo_water2water <- select(PokeGo_water2water, -X)
+PokeGo_notwater2water <- select(PokeGo_notwater2water, -X)
+```
+
+<br>
+
+###**The Question**
+The machine learning question for *Pok&eacute;monGo* is: **How to calculate Pok&eacute;mon rarity**.
+
+If Pok&eacute;mon rarity can be calculated, then a *Pok&eacute;monGo* user would know what Pok&eacute;mon are truly rare (and worth searching for), and which are common. That's what will be solved in this report.
+
+<br>
+
+###**The Machine Learning Technique**
+A supervised approach was used to solve Pok&eacute;mon rarity. To be specific, the K-means algorithm was used on the independent variable of Pok&eacute;mon Id. This way, rarity could be clustered into a few different groups. Four groups were chosen: Common, Uncommon, Rare, and Very Rare. So, four clusters were made. First, the data had to be set-up to be able to make these clusters.
+
+Here's the code for the set-up:
+
+```{r}
+#First I made new datasets:
+cleanId <- select(PokeGo_clean, pokemonId)
+waterId <- select(PokeGo_water2water, pokemonId)
+notwaterId <- select(PokeGo_notwater2water, pokemonId)
+
+#I turned them into a factor, because each Id represents a Pokemon.
+cleanIdFactor <- as.factor(cleanId$pokemonId)
+waterIdFactor <- as.factor(waterId$pokemonId)
+notwaterIdFactor <- as.factor(notwaterId$pokemonId)
+
+#I then counted the number of times each Pokemon is seen:
+cleanId <- count(cleanIdFactor, 1)
+waterId <- count(waterIdFactor, 1)
+notwaterId <- count(notwaterIdFactor, 1)
+
+#and arranged the datasets by the frequency (this way k-means will group it
+#according to the rarity/frequency instead of the Id).
+cleanId <- arrange(cleanId, freq)
+waterId <- arrange(waterId, freq)
+notwaterId <- arrange(notwaterId, freq)
+#I then changed the x columns name back to PokemonId, because count deleted the 
+#old PokemonId column and replaced it with a column named x.
+colnames(cleanId)[1] <- "pokemonId"
+colnames(waterId)[1] <- "pokemonId"
+colnames(notwaterId)[1] <- "pokemonId"
+```
+
+Now that the code is set-up for K-means Clustering, the clusters can be made.
+
+Here's the code:
+
+```{r}
+k <- 4
+set.seed(1)
+
+#Making the clusters for each dataset:
+cleanIdKMC <- kmeans(cleanId$freq, centers = k)
+waterIdKMC <- kmeans(waterId$freq, centers = k)
+notwaterIdKMC <- kmeans(notwaterId$freq, centers = k)
+```
+
+<br>
+
+###**The Results**
+Now that each dataset has been clustered, it can now be evaluated to show the results.
+
+**All Pok&eacute;mon**
+
+```{r echo = FALSE, message = FALSE, fig.height = 3}
+cleanRarity <- ggplot(cleanId, aes(pokemonId, freq, col = factor(cleanIdKMC$cluster), alpha = .5)) +
+  geom_point() +
+  labs(x = "All Pokemon Id's", y = "Frequency") +
+  scale_color_manual(values = c("#800080", "#006622", "#e68a00", "#ff0000"),
+                     name = "Rarity",
+                     breaks = c(4, 3, 2, 1),
+                     labels = c("Very Common", "Common", "Rare", "Very Rare")) +
+  scale_alpha(guide = F) +
+  theme(axis.text.x = element_blank())
+cleanRarity
+
+#Can't use this in github...
+#ggplotly(cleanRarity) %>%
+#  layout(showlegend = F)
+```
+
+<br>
+
+**Water Type Pok&eacute;mon**
+
+```{r echo = FALSE, message = FALSE, fig.height = 3}
+waterRarity <- ggplot(waterId, aes(pokemonId, freq, col = factor(waterIdKMC$cluster), alpha = .5)) +
+  geom_point() +
+  labs(x = "Water Type Pokemon Id's", y = "Frequency") +
+  scale_color_manual(values = c("#800080", "#e68a00", "#ff0000", "#006622"),
+                     name = "Rarity",
+                     breaks = c(4, 3, 2, 1),
+                     labels = c("Very Common", "Common", "Rare", "Very Rare")) +
+  scale_alpha(guide = F) +
+  theme(axis.text.x = element_blank())
+waterRarity
+
+#Can't use this in github...
+#ggplotly(waterRarity) %>%
+#  layout(showlegend = F)
+```
+
+<br>
+
+**Non-water Type Pok&eacute;mon**
+
+```{r echo = FALSE, message = FALSE, fig.height = 3}
+notwaterRarity <- ggplot(notwaterId, aes(pokemonId, freq, col = factor(notwaterIdKMC$cluster), alpha = .5)) +
+  geom_point() +
+  labs(x = "Non-water Type Pokemon Id's", y = "Frequency") +
+  scale_color_manual(values = c("#ff0000", "#800080", "#e68a00", "#006622"),
+                     name = "Rarity",
+                     breaks = c(4, 3, 2, 1),
+                     labels = c("Very Common", "Common", "Rare", "Very Rare")) +
+  scale_alpha(guide = F) +
+  theme(axis.text.x = element_blank())
+notwaterRarity
+
+#Can't use this in github...
+#ggplotly(notwaterRarity) %>%
+#  layout(showlegend = F)
+```
+
+<br>
+
+###**Conclusion**
+As each graph demonstrates, the K-means Algorithm calculated rarity under each case. It even calculated the rarity of water type Pok&eacute;mon; which means it can calculate any specific Pok&eacute;mon type, or even a group of Pok&eacute;mon (like the non-water type graph). In this way, any *Pok&eacute;monGo* user can know which Pok&eacute;mon are rare, and which are common.
+
+<br>
+
+
+
+
