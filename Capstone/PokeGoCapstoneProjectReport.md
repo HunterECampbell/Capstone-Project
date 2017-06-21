@@ -182,7 +182,7 @@ The summary for water and non-water, will be stated below when testing for their
 
 ### ***PokémonGo* Rarity Chart**
 
-To start us off, we need to know the difference between the Pokémon that are common, and the Pokémon that are more rare. The rarity in *PokémonGo* is different than the older *Gameboy* to *DS* games. In *PokémonGo*, the rarity is based on how often a Pokémon spawns. As the graph below shows, there is a peak of Pokémon Id's from 10-25 (the common Pokémon). There are also a few shorter peaks around 40-50, 95-100, and 130-135 (the less common Pokémon). The rest of the graph shows the rare Pokémon.
+To start us off, we need to know the difference between the Pokémon that are common, and the Pokémon that are more rare. The rarity in *PokémonGo* is different than the older *Gameboy* to *DS* games. In *PokémonGo*, the rarity is based on how often a Pokémon spawns. As the graph below shows, there is a peak of Pokémon Id's from 10-25 (the common Pokémon). There are also a few shorter peaks around 40-50, 95-100, and 130-135 (the less common Pokémon). The rest of the graph shows the rare Pokémon. This graph is essentially showing the independent variable (Pokémon Id), because everything else in the dataset depends on Pokémon Id.
 
 Here's a reference on what each Pokémon Id is: [Pokémon Id's](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number)
 
@@ -307,7 +307,7 @@ Here's a comparison of the three line graphs, showing Pokémon rarity, next to t
 
 To go above and beyond a visual estimate of rarity, rarity can be calculated and then plotted again. In this way, any *PokémonGo* user can have confidence between the difference of rare and common Pokémon. In this way, all of the information above can be applied on a more successful scale.
 
-A supervised approach was used to solve Pokémon rarity. To be specific, the K-means algorithm was used on the independent variable of Pokémon Id. This way, rarity could be clustered into a few different groups. Four groups were chosen: Very Common, Common, Rare, and Very Rare. So, four clusters were made. First, the data had to be set-up to be able to make these clusters.
+A supervised approach was used to solve Pokémon rarity. To be specific, the K-means algorithm was used on the independent variable of Pokémon Id. This way, rarity could be clustered into a few different groups. Four groups were chosen: Very Common, Common, Rare, and Very Rare. So, four clusters were made. That is how K (which equals 4) was chosen. First, the data had to be set-up to be able to make these clusters.
 
 Here's the code for the set-up:
 
@@ -344,6 +344,7 @@ Now that the code is set-up for K-means Clustering, the clusters can be made.
 Here's the code:
 
 ``` r
+#Here's our K variable:
 k <- 4
 set.seed(1)
 
@@ -383,7 +384,7 @@ The y-axis needs to be noted with this graph. Because there is a smaller amount 
 
 ![](PokeGoCapstoneProjectReport_files/figure-markdown_github/unnamed-chunk-28-1.png)![](PokeGoCapstoneProjectReport_files/figure-markdown_github/unnamed-chunk-28-2.png)![](PokeGoCapstoneProjectReport_files/figure-markdown_github/unnamed-chunk-28-3.png)![](PokeGoCapstoneProjectReport_files/figure-markdown_github/unnamed-chunk-28-4.png)
 
-As each graph demonstrates, the K-means Algorithm calculated rarity under each case. It even calculated the rarity of water type Pokémon; which means it can calculate any specific Pokémon type, or even a group of Pokémon (like the non-water type graph). In this way, any *PokémonGo* user can know which Pokémon are rare, and which are common.
+As each graph demonstrates, the K-means Algorithm calculated rarity under each case. It even calculated the rarity of water type Pokémon; which means it can calculate any specific Pokémon type, or even a group of Pokémon (like the non-water type graph) with great accuracy. In this way, any *PokémonGo* user can know which Pokémon are rare, and which are common.
 
 <br>
 
